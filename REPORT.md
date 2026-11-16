@@ -334,4 +334,4 @@ python hdsp06_robust.py        # ~5 min (Monte Carlo)
 python hdsp03_lp.py 2 4 6      # ~30 min
 ```
 
-Results are written to `hdsp/results_*.json`. The GitHub Actions workflow `reproduce.yml` re-runs the fast scripts on every push and uploads the JSON files.
+Results are written to `hdsp/results_*.json`; the committed files are the ones quoted in this report. The helper checks `hdsp04_ramps.py`, `hdsp06_radius.py` and `hdsp03_verify.py` reproduce the asymmetric-ramp bound, the robustness radius and the fine-grid LP verification.

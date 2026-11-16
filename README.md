@@ -32,7 +32,7 @@ python hdsp06_robust.py && python hdsp06_radius.py
 python hdsp03_lp.py 2 4 6 && python hdsp03_verify.py 2 4 6   # slow (~30 min)
 ```
 
-The `reproduce` GitHub Actions workflow re-runs the fast scripts on every push and uploads `results_*.json`.
+Each script writes its results to `hdsp/results_*.json`; the committed JSON files are the ones the report quotes.
 
 | File | Role |
 |---|---|
@@ -53,7 +53,7 @@ $$\sigma(x)=98x^9+117x^8+114x^7+97x^6+107x^5+99x^4+97x^3+107x^2+97x+121,$$
 
 $$\mathfrak S=\sigma(256)=464958426364716893561209 .$$
 
-Write $\mathfrak S$ in base 256 and read the digits as ASCII. `python hdsp/signature.py` does it for you, and CI checks it on every push.
+Write $\mathfrak S$ in base 256 and read the digits as ASCII. `python hdsp/signature.py` does it for you and asserts the result.
 
 ## Cite / license
 
