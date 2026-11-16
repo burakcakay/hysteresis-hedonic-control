@@ -1,0 +1,187 @@
+{
+  "Σ": {
+    "t": "[0, ∞)",
+    "R": "[0, R_max]",
+    "x": "(M, E, B)",
+    "z": "(M, E, B, R)",
+    "u": "dR/dt",
+    "η(M)": "1 / (1 + αM)",
+    "β_s": "β_+ if R ≥ E; β_- if R < E",
+    "dM/dt": "R - λM",
+    "dE/dt": "β_s(R - E)",
+    "D": "1 + A + σ_N²",
+    "K": "[B + η(M)(R - E)] / D",
+    "Θ": "α, λ, β_+, β_-, D, κ, c, μ, v_max > 0"
+  },
+
+  "HDSP-01": {
+    "x": "(M, E, B)",
+    "f_B": "-a(B-b₁)(B-b₂)(B-b₃) + u_B",
+    "Ω": "a > 0; b₁ < b₂ < b₃",
+    "P₁": "∃ x₁*, x₂*: R₁ = R₂ = R̄ ∧ K(x₁*) ≠ K(x₂*)",
+    "P₂": "Re[spec(Df(x₁*))] < 0",
+    "P₃": "Re[spec(Df(x₂*))] < 0",
+    "P₄": "∃ t₁,t₂: R(t₁) < R(t₂) ∧ K(t₁) > K(t₂)",
+    "?": [
+      "n_min = min dim(x)",
+      "∃ f,H: P₁ ∧ P₂ ∧ P₃ ∧ P₄",
+      "Basin(x₁*) ∩ Basin(x₂*) = ∅",
+      "dim(x) < n_min ⇒ ¬(P₁ ∧ P₂ ∧ P₃ ∧ P₄)"
+    ],
+    "✓": "n_min; {x_i*}; {Basin(x_i*)}; stability certificates"
+  },
+
+  "HDSP-02": {
+    "dx/dt": "f(x,R;θ)",
+    "y_k": "H(x(t_k),R(t_k);θ) + ε_k",
+    "θ": "(α, λ, β_+, β_-, D, κ, ...)",
+    "O(x)": [
+      "∇H",
+      "∇L_f H",
+      "∇L_f² H",
+      "...",
+      "∇L_f^(n-1) H"
+    ],
+    "?": [
+      "rank O(x) = n",
+      "F(R(·),x₀,θ) = F(R(·),x₀',θ') ⇒ (x₀,θ) = (x₀',θ')",
+      "R* = argmax_R λ_min(I_Fisher(R))",
+      "min_R ∫₀ᵀ |R(t)|² dt subject to rank O = n",
+      "inf_est sup_θ E[||θ_est - θ||²]"
+    ],
+    "✓": [
+      "structural identifiability",
+      "local observability",
+      "parameter equivalence classes",
+      "confidence bounds",
+      "out-of-sample prediction error"
+    ]
+  },
+
+  "HDSP-03": {
+    "z": "(M,E,R)",
+    "dz/dt": "F(z,u)",
+    "dR/dt": "u",
+    "ℓ": "[K₀ + η(M)(R-E)]/D - cR - μ|u| - (κ/2)u²",
+    "U": "{u: |u| ≤ v_max, 0 ≤ R ≤ R_max}",
+    "g*": "sup_π limsup_(T→∞) (1/T)∫₀ᵀ ℓ(z_π(t),u_π(t))dt",
+    "?": [
+      "∃ V ∈ C¹(Ω), g ∈ ℝ",
+      "∀ (z,u) ∈ Ω×U_adm:",
+      "ℓ(z,u) + ∇V(z)·F(z,u) ≤ g",
+      "g_lower ≤ g* ≤ g_upper",
+      "inf_(V,g) g",
+      "sup_π limsup_(T→∞) (1/T)∫₀ᵀ ℓ dt = g*"
+    ],
+    "✓": [
+      "g_upper - g_lower ≤ ε",
+      "ε → 0",
+      "π* ∈ argmax_π g(π)"
+    ]
+  },
+
+  "HDSP-04": {
+    "R(t+T_p)": "R(t)",
+    "u": "dR/dt",
+    "U": "0 ≤ R ≤ R_max; |u| ≤ v_max",
+    "G(T_p,q,a)": "(1/T_p)∫₀^(T_p) ℓ(z(t),u(t))dt",
+    "?": [
+      "(T_p*,q*,a*) ∈ argmax G(T_p,q,a)",
+      "0 < T_p* < ∞",
+      "0 < q* < 1",
+      "0 < a* ≤ R_max",
+      "G(T_p*,q*,a*) > G_constant",
+      "G_periodic* = sup_(R∈U_adm) G(R) ?",
+      "∂G/∂T_p = 0",
+      "∂G/∂q = 0",
+      "∂G/∂a = 0",
+      "∇²G ≺ 0 ?"
+    ],
+    "✓": [
+      "existence(T_p*)",
+      "uniqueness(T_p*) or characterization(argmax G)",
+      "global optimality certificate",
+      "G_upper - G_candidate ≤ ε"
+    ]
+  },
+
+  "HDSP-05": {
+    "S": "λM",
+    "dS/dt": "λ(R-S)",
+    "η(S)": "1/(1+aS)",
+    "a": "α/λ",
+    "Ω": "0 < S_L < S_H < r",
+    "F_active": "λ(r-S)",
+    "F_passive": "-λS",
+    "T_A": "(1/λ)ln[(r-S_L)/(r-S_H)]",
+    "T_P": "(1/λ)ln(S_H/S_L)",
+    "T_cycle": "T_A + T_P",
+    "N": "∫_(S_L)^(S_H) g(s)/[λ(r-s)] ds - 2h",
+    "J": "N/T_cycle",
+    "?": [
+      "(S_L*,S_H*) ∈ argmax J(S_L,S_H)",
+      "S_L*g(S_L) = rJ",
+      "S_H*g(S_H) = rJ",
+      "S_L*g(S_L) = S_H*g(S_H)",
+      "∂²J/∂S_L² < 0 ?",
+      "det(∇²J) > 0 ?",
+      "J_hysteresis* ≥ J_all_policies* ?",
+      "lim_(λ→0⁺) ||π_full* - π_reduced*|| = 0 ?",
+      "||J_full* - J_reduced*|| ≤ Cλ^p ?"
+    ],
+    "✓": [
+      "existence(S_L*,S_H*)",
+      "switching thresholds",
+      "singular perturbation error bound",
+      "global optimality or explicit counterexample"
+    ]
+  },
+
+  "HDSP-06": {
+    "dx": "f(x,R,u;θ)dt + G(x)dW_t",
+    "y_k": "H(x(t_k),R(t_k)) + ε_k",
+    "θ": "Θ_uncertain",
+    "C(u)": "cR + μ|u| + (κ/2)u²",
+    "J_robust": "sup_π inf_(θ∈Θ) liminf_(T→∞) (1/T)E_θ[∫₀ᵀ (K-C(u))dt]",
+    "Ω": [
+      "0 ≤ R ≤ R_max",
+      "|u| ≤ v_max",
+      "P_θ(K < K_min) ≤ ε",
+      "liminf_(T→∞)(1/T)∫₀ᵀ E[F(t)]dt ≥ F_min"
+    ],
+    "?": [
+      "π_robust* ∈ argmax_π inf_(θ∈Θ) J(π,θ)",
+      "sup_(θ∈Θ) P_θ(x(t)∉X_safe) ≤ ε",
+      "sup_(θ∈Θ) E[||x(t)||²] < ∞",
+      "E_test[(K_pred-K_obs)²] < E_test[(K_null-K_obs)²]",
+      "J_robust(π*) > J_robust(π_baseline) ?"
+    ],
+    "✓": [
+      "mean-square stability",
+      "robust feasibility",
+      "parameter uncertainty bounds",
+      "out-of-sample validation",
+      "performance certificate"
+    ]
+  },
+
+  "HDSP-Ω": {
+    "objective": "min dim(x)",
+    "constraints": [
+      "structural_identifiability = true",
+      "observability = true",
+      "stability = true",
+      "robust_feasibility = true",
+      "prediction_error ≤ ε_pred",
+      "optimality_gap ≤ ε_opt"
+    ],
+    "optimization": "sup_π inf_(θ∈Θ) liminf_(T→∞) (1/T) E_θ[∫₀ᵀ (K(t)-C(u(t)))dt]",
+    "target": [
+      "R₁ < R₂ ∧ K₁ > K₂",
+      "K*(R_low) ≥ K_target",
+      "F* ≥ F_min",
+      "ε_pred → 0",
+      "ε_opt → 0"
+    ]
+  }
+}

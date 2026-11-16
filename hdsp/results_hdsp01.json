@@ -1,0 +1,85 @@
+{
+ "equilibria_Rbar=0.5": [
+  {
+   "M": 5.0,
+   "E": 0.5,
+   "B": 0.0,
+   "K": 0.0,
+   "spec_plus": [
+    -0.1,
+    -1.0,
+    -0.5
+   ],
+   "spec_minus": [
+    -0.1,
+    -0.8,
+    -0.5
+   ],
+   "stable": true
+  },
+  {
+   "M": 5.0,
+   "E": 0.5,
+   "B": 0.5,
+   "K": 0.3333333333333333,
+   "spec_plus": [
+    -0.1,
+    -1.0,
+    0.25
+   ],
+   "spec_minus": [
+    -0.1,
+    -0.8,
+    0.25
+   ],
+   "stable": false
+  },
+  {
+   "M": 5.0,
+   "E": 0.5,
+   "B": 1.0,
+   "K": 0.6666666666666666,
+   "spec_plus": [
+    -0.1,
+    -1.0,
+    -0.5
+   ],
+   "spec_minus": [
+    -0.1,
+    -0.8,
+    -0.5
+   ],
+   "stable": true
+  }
+ ],
+ "uB_crit_formula": 0.048112522432468816,
+ "uB_window_numeric": [
+  -0.048,
+  0.04799999999999999
+ ],
+ "basin_check": {
+  "samples": 400,
+  "mismatches": 0,
+  "rule": "Basin(x1*)={B<b2}, Basin(x2*)={B>b2}, separatrix {B=b2}"
+ },
+ "potential_barriers": {
+  "dU_low": 0.015624937499999936,
+  "dU_high": 0.015624937499999936
+ },
+ "P4_steady": {
+  "R1": 0.2,
+  "K1": 0.6666666666666666,
+  "R2": 0.8,
+  "K2": 0.0
+ },
+ "P4_transient_from_equilibrium": {
+  "t1": 50.5,
+  "R1": 0.90025,
+  "K1": 0.7299341816583172,
+  "t2": 300.0,
+  "R2": 0.95,
+  "K2": 0.6666666666666669,
+  "holds": true
+ },
+ "P4_without_E_from_equilibrium": "K(t) = b3/D for all t -> P4 fails (needs E, or u_B coupled to R)"
+}
